@@ -1,0 +1,1 @@
+The collection contains detailed transactional records from numerous Istanbul shopping centers. It contains a variety of information about customer purchases, such as demographic information, product categories, quantities, prices, payment methods, invoice dates, and the shopping mall where the transaction occurred.
