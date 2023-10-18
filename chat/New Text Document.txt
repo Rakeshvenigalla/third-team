@@ -1,1 +1,12 @@
 The collection contains detailed transactional records from numerous Istanbul shopping centers. It contains a variety of information about customer purchases, such as demographic information, product categories, quantities, prices, payment methods, invoice dates, and the shopping mall where the transaction occurred.
+
+
+
+
+
+i think this are   good question 
+
+	Do younger customers spend more on certain product categories than older customers, Is there a link between a customer's age and their chosen shopping mall?
+
+
+Can we find any meaningful correlations between various factors?
