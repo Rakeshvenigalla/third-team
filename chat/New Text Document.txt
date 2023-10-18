@@ -12,7 +12,7 @@ i think this are   good question
 
 Can we find any meaningful correlations between various factors?
 =======
-I am Writing the smart questions can confirm this on the choosen dataset?
+I am Writing the smart questions canu confirm this o the choosen dataset?
 
 What is the gender and age distribution of your customers, Is it possible to discern trends or patterns in shopping behavior based on gender and age?
 
@@ -20,17 +20,10 @@ What is the gender and age distribution of your customers, Is it possible to dis
 Is there a link between characteristics such as age and spending?
 >>>>>>> 86c11cbf8154758f2640ba35bf420cfeef96baac
 
-i agree with this question
+i this i agree with this quwstion
 What is the gender and age distribution of your customers, Is it possible to discern trends or patterns in shopping behavior based on gender and age?
-
-===========================
-
-
-yeah i agree with these questions and here are my questions for dataset:
-
-What is the most popular payment method among customers, Is there a link between the payment method and the location of the shopping mall?
-
-Is there a repeat client base, and if yes, how has their spending changed over time?
+======================
 
 
-===============================
+Yes pranideep i am agreeing with these smart questions 
+
