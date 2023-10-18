@@ -19,3 +19,7 @@ What is the gender and age distribution of your customers, Is it possible to dis
 
 Is there a link between characteristics such as age and spending?
 >>>>>>> 86c11cbf8154758f2640ba35bf420cfeef96baac
+
+i this i agree with this quwstion
+What is the gender and age distribution of your customers, Is it possible to discern trends or patterns in shopping behavior based on gender and age?
+
