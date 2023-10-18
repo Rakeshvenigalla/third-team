@@ -4,9 +4,18 @@ The collection contains detailed transactional records from numerous Istanbul sh
 
 
 
+<<<<<<< HEAD
 i think this are   good question 
 
 	Do younger customers spend more on certain product categories than older customers, Is there a link between a customer's age and their chosen shopping mall?
 
 
 Can we find any meaningful correlations between various factors?
+=======
+I am Writing the smart questions canu confirm this o the choosen dataset?
+
+What is the gender and age distribution of your customers, Is it possible to discern trends or patterns in shopping behavior based on gender and age?
+
+
+Is there a link between characteristics such as age and spending?
+>>>>>>> 86c11cbf8154758f2640ba35bf420cfeef96baac
