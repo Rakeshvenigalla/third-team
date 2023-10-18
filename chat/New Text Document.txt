@@ -1,1 +1,12 @@
 The collection contains detailed transactional records from numerous Istanbul shopping centers. It contains a variety of information about customer purchases, such as demographic information, product categories, quantities, prices, payment methods, invoice dates, and the shopping mall where the transaction occurred.
+
+
+
+
+
+I am Writing the smart questions canu confirm this o the choosen dataset?
+
+What is the gender and age distribution of your customers, Is it possible to discern trends or patterns in shopping behavior based on gender and age?
+
+
+Is there a link between characteristics such as age and spending?
