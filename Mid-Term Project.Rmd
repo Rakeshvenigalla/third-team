@@ -79,7 +79,9 @@ any(duplicated(data))
 
 ```
 ```{r, results='markup'}
-data$invoice_date <- as.Date(data$invoice_date, format = "%m/%d/%Y")
+
+#data$invoice_date <- as.Date(data$invoice_date, format = "%d/%m/%Y")
+
 head(data)
 ```
 
@@ -90,24 +92,128 @@ DataExplorer::create_report(data)
 ```
 
 ```{r, results='markup'}
-barplot(table(data$gender), main="Gender Distribution", xlab="Gender", ylab="Count")
+library(ggplot2)
 
+# Create a frequency distribution bar plot using ggplot2
+ggplot(data = data, aes(x = gender)) +
+  geom_bar() +
+  labs(title = "Gender Distribution", x = "Gender", y = "Count")
 ```
 
 
 ```{r, results='markup'}
-barplot(table(data$gender), main="Gender Distribution", xlab="Gender", ylab="Count")
-```
+library(ggplot2)
 
+# Create a frequency distribution bar plot using ggplot2
+ggplot(data = data, aes(x = category)) +
+  geom_bar() +
+  labs(title = "Category Distribution", x = "Categories", y = "Count")
 
-```{r, results='markup'}
-barplot(table(data$category), main="Gender Distribution", xlab="Category", ylab="Count")
-```
-
-```{r, results='markup'}
-barplot(table(data$gender), main="Gender Distribution", xlab="Gender", ylab="Count")
 ```
 
 ```{r, results='markup'}
+library(ggplot2)
+
+# Create a frequency distribution bar plot using ggplot2
+ggplot(data = data, aes(x = payment_method)) +
+  geom_bar() +
+  labs(title = "Payment Method Distribution", x = "Payment Method", y = "Count")
+```
+
+```{r, results='markup'}
+library(ggplot2)
+
+# Create a frequency distribution bar plot using ggplot2
+ggplot(data = data, aes(x = shopping_mall)) +
+  geom_bar() +
+  labs(title = "Mall Distribution", x = "Shopping Mall", y = "Count")
+```
+```{r, results='markup'}
+# Create a histogram for a continuous variable
+hist(data$age, 
+     main = "Age Distribution", 
+     xlab = "Age", 
+     ylab = "Count")
+
+```
+
+```{r, results='markup'}
+# Create a histogram for a continuous variable
+hist(data$quantity, 
+     main = "Quantity Distribution", 
+     xlab = "Quantity", 
+     ylab = "Count")
+
+```
+
+```{r, results='markup'}
+# Create a histogram for a continuous variable
+hist(data$price, 
+     main = "Price Distribution", 
+     xlab = "Price", 
+     ylab = "Count")
+
+```
+#EDA
+
+
+```{r, results='markup'}
+ggplot(data, aes(x = age)) + geom_bar(fill = "lightblue")
+
+```
+
+
+
+```{r, results='markup'}
+ggplot(data, aes(x = category)) + geom_bar(fill = "lightgreen")
+
+
+```
+
+```{r, results='markup'}
+
+ggplot(data, aes(x = age, y = price)) + geom_point(color = "blue")
+
+```
+
+```{r, results='markup'}
+
+ggplot(data, aes(x = gender, y = price, fill = gender)) + geom_boxplot()
+
+```
+
+```{r, results='markup'}
+cor(data$age, data$price)
+
+
+```
+
+```{r, results='markup'}
+library(dplyr)
+
+data %>%
+  group_by(category) %>%
+  summarise(avg_price = mean(price))
+
+
+```
+
+```{r, results='markup'}
+
+
+```
+
+```{r, results='markup'}
+
+
+```
+
+```{r, results='markup'}
+
+
+```
+
+```{r, results='markup'}
+
 
 ```
