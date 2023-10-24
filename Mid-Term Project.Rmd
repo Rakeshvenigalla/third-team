@@ -1,0 +1,113 @@
+---
+title: "Feature Selection in LM / subsetting features"
+author: "GWU Intro to Data Science DATS 6101"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pbaseball_document:
+    toc: yes
+    toc_depth: '3'
+  word_document:
+    toc: yes
+    toc_depth: '3'
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r init, include=F}
+# The package "ezids" (EZ Intro to Data Science) includes a lot of the helper functions we developed for the course. 
+# Some of the frequently used functions are loadPkg(), xkabledply(), xkablesummary(), uzscale(), etc.
+# Once installed, load the library.
+```
+
+```{r setup, include=FALSE}
+# some of common options (and the defaults) are: 
+# include=T, eval=T, echo=T, results='hide'/'asis'/'markup',..., collapse=F, warning=T, message=T, error=T, cache=T, fig.width=6, fig.height=4, fig.dim=c(6,4) #inches, fig.align='left'/'center','right', 
+# knitr::opts_chunk$set(warning = F, results = "markup", message = F)
+knitr::opts_chunk$set(warning = F, results = "hide", message = F)
+# knitr::opts_chunk$set(include = F)
+# knitr::opts_chunk$set(echo = TRUE)
+options(scientific=T, digits = 3) 
+# options(scipen=9, digits = 3) 
+# ‘scipen’: integer. A penalty to be applied when deciding to print numeric values in fixed or exponential notation.  Positive values bias towards fixed and negative towards scientific notation: fixed notation will be preferred unless it is more than ‘scipen’ digits wider.
+# use scipen=999 to prevent scientific notation at all times
+```
+
+
+
+```{r, results='markup'}
+# Loading our Dataset as 'Data'
+data <- read.csv("customer_shopping_data.csv")
+head(data)
+```
+
+```{r, results='markup'}
+#Checking the structure of Data.
+str(data)
+
+```
+```{r, results='markup'}
+summary(data)
+
+```
+
+
+```{r, results='markup'}
+library(skimr)
+skim(data)
+```
+
+
+
+```{r, results='markup'}
+#Seeing if there are any missing values in the Data
+
+any(is.na(data))
+
+#Found no missing Data
+```
+```{r, results='markup'}
+
+any(duplicated(data))
+
+
+```
+```{r, results='markup'}
+data$invoice_date <- as.Date(data$invoice_date, format = "%m/%d/%Y")
+head(data)
+```
+
+
+```{r, results='markup'}
+library(DataExplorer)
+DataExplorer::create_report(data)
+```
+
+```{r, results='markup'}
+barplot(table(data$gender), main="Gender Distribution", xlab="Gender", ylab="Count")
+
+```
+
+
+```{r, results='markup'}
+barplot(table(data$gender), main="Gender Distribution", xlab="Gender", ylab="Count")
+```
+
+
+```{r, results='markup'}
+barplot(table(data$category), main="Gender Distribution", xlab="Category", ylab="Count")
+```
+
+```{r, results='markup'}
+barplot(table(data$gender), main="Gender Distribution", xlab="Gender", ylab="Count")
+```
+
+```{r, results='markup'}
+
+```
