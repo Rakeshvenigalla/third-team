@@ -1,0 +1,303 @@
+---
+title: "R"
+output: html_document
+date: "2023-10-24"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+customer_data=read.csv((file.choose()))
+# Convert date to a proper date format
+customer_data$invoice_date = as.Date(customer_data$invoice_date, format = "%d/%m/%Y")
+```
+
+```{r cars}
+customer_data
+str(customer_data)
+```
+
+```{r cars}
+# Check for missing values
+sum(is.na(customer_data))
+```
+
+```{r, results='markup'}
+# Check data types
+str(customer_data)
+```
+```{r, results='markup'}
+# Ensure proper factors
+customer_data$gender = factor(customer_data$gender)
+customer_data$category = factor(customer_data$category)
+customer_data$payment_method = factor(customer_data$payment_method)
+customer_data$shopping_mall = factor(customer_data$shopping_mall)
+
+print(customer_data$gender)
+```
+```{r, results='markup'}
+# Check the dataset after data cleaning
+head(customer_data)
+summary(customer_data)
+
+
+paste("The NA's in the dataset is:",sum(is.na(customer_data)))
+```
+
+```{r, results='markup'}
+# Subsetting the dataset based on different conditions
+
+# Subsetting the dataset for female customers
+female_customers = subset(customer_data, gender == "Female")
+female_customers
+# Subsetting the dataset for customers older than 30
+older_customers = subset(customer_data, age > 30)
+older_customers
+# Subsetting the dataset for Clothing category
+clothing_data = subset(customer_data, category == "Clothing")
+clothing_data
+# Subsetting the dataset for customers who shopped at Kanyon mall
+kanyon_shoppers = subset(customer_data, shopping_mall == "Kanyon")
+kanyon_shoppers
+# Subsetting the dataset for customers who used Credit Card as the payment method
+credit_card_customers = subset(customer_data, payment_method == "Credit Card")
+credit_card_customers
+
+# Gender distribution
+gender_distribution = table(customer_data$gender)
+gender_distribution
+```
+
+```{r, results='markup'}
+# Age distribution
+ ggplot(customer_data, aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "lightblue", color = "black") +
+  labs(title = "Age Distribution of Customers", x = "Age", y = "Frequency")
+```
+```{r, results='markup'}
+
+# Gender and Age Trends
+ggplot(customer_data, aes(x = age, fill = gender)) +
+  geom_density(alpha = 0.6) +
+  labs(title = "Gender and Age Trends", x = "Age", y = "Density") +
+  theme_minimal()
+```
+
+```{r, results='markup'}
+# Summary
+summary_gender_age = summary(customer_data$gender)
+summary_age = summary(customer_data$age)
+
+```
+
+```{r, results='markup'}
+# Spending by age and category
+ ggplot(customer_data, aes(x = age, y = price, color = category)) +
+  geom_point() +
+  labs(title = "Spending by Age and Category", x = "Age", y = "Price") +
+  theme_minimal()
+```
+
+```{r, results='markup'}
+# Shopping mall by age
+ggplot(customer_data, aes(x = age, fill = shopping_mall)) +
+  geom_bar() +
+  labs(title = "Shopping Mall by Age", x = "Age", y = "Count")
+```
+```{r, results='markup'}
+ggplot(data = customer_data, aes(x = age, fill = gender)) +
+  geom_density(alpha = 0.5) +
+  labs(title = "Density plot of Age by Gender", x="Age", y= 'Gender')
+```
+
+```{r, results='markup'}
+ggplot(data = customer_data, aes(x = age, fill = price)) +
+  geom_bar(alpha = 0.5) +
+  labs(title = "Density plot of Age by Price", x="Age", y= 'Price')
+```
+
+
+```{r, results='markup'}
+# Summary
+summary_spending_age_category <- summary(customer_data$price)
+```
+
+```{r, results='markup'}
+
+# Payment method distribution
+payment_distribution <- table(customer_data$payment_method)
+
+# Payment method by shopping mall
+ ggplot(customer_data, aes(x = shopping_mall, fill = payment_method)) +
+  geom_bar(position = "fill") +
+  labs(title = "Payment Method by Shopping Mall", x = "Shopping Mall", y = "Proportion") +
+  theme_minimal()
+
+# Summary
+summary_payment_method <- summary(customer_data$payment_method)
+```
+
+```{r, results='markup'}
+
+# Link between quantity and price
+ ggplot(customer_data, aes(x = quantity, y = price)) +
+  geom_point() +
+  labs(title = "Link between Quantity and Price", x = "Quantity", y = "Price") +
+  theme_minimal()
+
+# Purchase rates by category
+ ggplot(customer_data, aes(x = category)) +
+  geom_bar() +
+  labs(title = "Purchase Rates by Category", x = "Category", y = "Count") +
+  theme_minimal()
+
+# Summary
+summary_quantity_price <- cor(customer_data$quantity, customer_data$price)
+```
+
+```{r, results='markup'}
+# T-test for spending on a specific product category by age group
+t_test_category_age <- t.test(as.numeric(customer_data$price),as.numeric(customer_data$category))
+
+# Chi-squared test for the independence of age and shopping mall
+chi_squared_test_result <- chisq.test(table(customer_data$age, customer_data$shopping_mall))
+ # Calculate the mode of payment method
+  popular_payment_method <- names(sort(table(customer_data$payment_method), decreasing = TRUE)[1])
+
+# Chi-squared test for the independence of payment method and shopping mall
+chi_squared_payment_mall <- chisq.test(table(customer_data$payment_method, customer_data$shopping_mall))
+# Correlation analysis for quantity and total cost
+  correlation_quantity_price <- cor.test(customer_data$quantity, customer_data$price)
+
+# Proportions of purchase rates by category
+purchase_rates_by_category <- prop.table(table(customer_data$category))
+
+
+t_test_category_age
+chi_squared_test_result
+chi_squared_payment_mall
+purchase_rates_by_category
+```
+
+## EDA
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+# Load necessary libraries
+library(ggplot2)
+
+boxplot(price ~ gender, data = customer_data, main = "Price by Gender", xlab = "Gender", ylab = "Price")
+
+ggplot(data, aes( x = gender, y = price, fill = gender)) + geom_boxplot()+ ggtitle("                            Price Spent by Gender") 
+
+```
+
+```{r, results='markup'}
+library(ggplot2)
+
+# Create a faceted histogram
+ggplot(customer_data, aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "lightblue", color = "black") +
+  facet_wrap(~ category, scales = "free_x") +
+  labs(title = "Age Distribution by Category", x = "Age") +
+  theme_minimal()
+
+
+
+```
+```{r, results='markup'}
+library(ggplot2)
+
+# Create a box plot to show the age distribution by shopping mall
+ggplot(customer_data, aes(x = shopping_mall, y = age)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(title = "Age Distribution by Shopping Mall", x = "Shopping Mall", y = "Age") +
+  theme_minimal()
+
+
+```
+
+```{r, results='markup'}
+library(ggplot2)
+
+# Create a bar plot for payment method
+ggplot(customer_data, aes(x = payment_method, fill = payment_method)) +
+  geom_bar() +
+  labs(title = "Payment Method Distribution", x = "Payment Method", y = "Count") +
+  theme_minimal()
+
+
+```
+
+```{r, results='markup'}
+# Create a stacked bar plot for payment method and shopping mall
+ggplot(customer_data, aes(x = shopping_mall, fill = payment_method)) +
+  geom_bar(position = "fill") +
+  labs(title = "Payment Method by Shopping Mall", x = "Shopping Mall") +
+  theme_minimal()
+
+
+```
+
+```{r, results='markup'}
+library(ggplot2)
+
+# Create a scatter plot to visualize the relationship between quantity and price
+ggplot(customer_data, aes(x = quantity, y = price)) +
+  geom_point() +
+  labs(title = "Number of Products vs. Total Cost", x = "Number of Products", y = "Total Cost") +
+  theme_minimal()
+
+
+```
+
+
+```{r, results='markup'}
+# Create a bar plot for product categories
+ggplot(customer_data, aes(x = category, fill = category)) +
+  geom_bar() +
+  labs(title = "Purchase Rates by Product Category", x = "Product Category", y = "Count") +
+  theme_minimal()
+
+
+```
+
+
+```{r, results='markup'}
+
+
+```
+
+
+```{r, results='markup'}
+
+
+```
+
+
+
+```{r, results='markup'}
+correlation_matrix <- cor(customer_data[, c("age", "quantity", "price")])
+print(correlation_matrix)
+
+library(ggplot2)
+library(reshape2)
+melted_corr_matrix <- melt(correlation_matrix)
+
+ggplot(data = melted_corr_matrix, aes(Var1, Var2, fill = value)) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "blue") +
+  labs(title = "Correlation Heatmap")
+
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
