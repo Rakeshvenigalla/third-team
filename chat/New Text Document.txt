@@ -41,4 +41,6 @@ do you want to make any other change in questions
 ===============================================================================
 
 guys i have some suggestions, how about choosing the one standard target variable instead of may,. so that this can give the multiple attribute impact on target variable.
- 
+ ++++++
+i think we can make a comparision relationship between age and total cost
+if all agree we can proside with it
