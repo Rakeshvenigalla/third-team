@@ -40,3 +40,28 @@ This code can be placed in an R Markdown document and executed to create the spe
 ============================================
 
 Yes phani we dont have any outliers if we have we can replace with it the mean and most frequent strategy and also if needed we can remove some of the rows we have plently of the rows.
+
+
+++++++++++++++++++++++++++++++
+
+
+The provided R code generates count plots for categorical features in your dataset using the 'ggplot2' library. Here's what the code does:
+
+1. *Load the 'ggplot2' Library:*
+   - It checks if the 'ggplot2' library is loaded and, if not, loads it. The 'ggplot2' library is essential for creating data visualizations.
+
+2. *Create a List of Categorical Features:*
+   - It defines a list called 'categorical_features' that contains the names of the categorical features you want to visualize. In this case, the list includes "gender," "category," and "payment_method."
+
+3. *Create a Plot for Each Categorical Feature:*
+   - It iterates through the 'categorical_features' list using a 'for' loop, and for each feature in the list, it creates a count plot.
+   - Inside the loop, it uses the 'ggplot' function to create the plot and specifies the data source ('customer_data') and aesthetics using 'aes_string.' It uses the 'x' axis for the current categorical feature and fills the bars by that feature.
+   - The 'geom_bar' function is used to create the count plot by counting the occurrences of each category.
+   - It sets the title of the plot as "Count Plot of [Feature Name]," where [Feature Name] is the name of the current categorical feature.
+   - The x-axis label is set to the current feature name, and the y-axis label is "Count."
+   - It applies a minimal theme to the plot using 'theme_minimal()' and rotates the x-axis text labels for better readability using 'theme(axis.text.x = element_text(angle = 45, hjust = 1).'
+
+4. *Display the Plot:*
+   - After creating each count plot, it uses the 'print' function to display the plot.
+
+This code is useful for quickly generating count plots for multiple categorical features in your dataset, allowing you to visualize the distribution of categories within each feature. You can customize it further or add it to an R Markdown document for documentation and reporting purposes.
