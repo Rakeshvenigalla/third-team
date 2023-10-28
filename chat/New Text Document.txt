@@ -44,3 +44,7 @@ guys i have some suggestions, how about choosing the one standard target variabl
  ++++++
 i think we can make a comparision relationship between age and total cost
 if all agree we can proside with it
+++++++
+yeah i agree with your response and here is the smart question with respect to the target variable suggestion, Is there a positive correlation between the quantity of products purchased and the total cost of the shopping? Does the choice of payment method affect the total purchase amount? Are credit card users more likely to spend more?,  if all agree we can proside with it
++++++++++
+
