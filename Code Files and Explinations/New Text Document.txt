@@ -35,3 +35,8 @@ The provided R code generates histograms for the age, price, and quantity distri
    - The 'labs' function sets the title, x-axis label, and y-axis label for this histogram.
 
 This code can be placed in an R Markdown document and executed to create the specified histograms, providing visual insights into the age, price, and quantity distributions in the dataset. You can customize the code further as needed to match your data visualization requirements.
+
+
+============================================
+
+Yes phani we dont have any outliers if we have we can replace with it the mean and most frequent strategy and also if needed we can remove some of the rows we have plently of the rows.
