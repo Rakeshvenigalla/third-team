@@ -1,4 +1,3 @@
-
 The collection contains detailed transactional records from numerous Istanbul shopping centers. It contains a variety of information about customer purchases, such as demographic information, product categories, quantities, prices, payment methods, invoice dates, and the shopping mall where the transaction occurred.
 
 
@@ -23,24 +22,19 @@ Is there a link between characteristics such as age and spending?
 
 i this i agree with this quwstion
 What is the gender and age distribution of your customers, Is it possible to discern trends or patterns in shopping behavior based on gender and age?
-================================
+======================
 
 
 Yes pranideep i am agreeing with these smart questions 
 
 yes i too agree with you guys lets push these questions to assignment
-===========================
+
 
 I'm proposing a SMART question can you check it out?
 
 "Is there a link between the number of products purchased and the total cost, Do specific product categories have greater purchase rates?"
-=================================
+++++++++++++
 
 
-do you want to make any other change in questions 
-==========================================
-
-I guess these are good enough, we can proceed forward.
-==========================================
-
-yeah
+do you want to make any other change in questions
+ 
