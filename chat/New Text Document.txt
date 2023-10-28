@@ -47,3 +47,9 @@ the question may be:
 total purchase amount significantly differ between male and female customers this can give any gender insights and how about the age?
 ======================
 
+
+Hello, this is my suggestion:
+
+Are certain product categories associated with higher total purchase amounts than others?
+===================================
+
