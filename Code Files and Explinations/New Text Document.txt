@@ -87,3 +87,7 @@ The provided R code generates a bar plot to visualize the count of values in the
    - It uses 'theme(axis.text.x = element_text(angle = 45, hjust = 1)' to rotate the x-axis labels by 45 degrees for better readability.
 
 This code creates a bar plot that visualizes the distribution of values in the "category" column of your dataset. It provides a quick and clear way to see the count of each category. You can customize the code further and incorporate it into your data analysis or reporting documents as needed.
+
+===================================================================================
+
+How about we can convert the string columns into the numeric data it might be very helpful for the further analysis.
