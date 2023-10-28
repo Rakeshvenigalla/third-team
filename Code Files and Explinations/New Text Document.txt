@@ -1,0 +1,15 @@
+I have done the Little analysis:
+
+Reading customer data from a CSV file.
+Converting the "invoice_date" column to a proper date format.
+Calculating the total cost for each transaction.
+After running this code, you will have a data frame called customer_data with the date column converted to the correct date format and a new column "total_cost" representing the total cost for each transaction. This data preprocessing is often a necessary step before conducting further data analysis or modeling.
+
+
+you will get a count of missing values in the customer_data data frame and a summary of the data types of its columns, which can be useful for data quality assessment and further analysis.
+
+
+By converting these columns to factors, you make it easier to work with categorical data in R. Factor variables help in organizing and analyzing categorical data by specifying the possible categories or levels explicitly. This can be useful for various data analysis and modeling tasks.
+
+
+Each subset allows you to focus on specific segments of the customer data based on the specified criteria. This can be helpful for conducting targeted analyses or generating reports for particular customer segments.
