@@ -13,3 +13,25 @@ By converting these columns to factors, you make it easier to work with categori
 
 
 Each subset allows you to focus on specific segments of the customer data based on the specified criteria. This can be helpful for conducting targeted analyses or generating reports for particular customer segments.
+
+=========================
+yes pranideep im doing further analysis and data visualization although we dont have any out layers
+The provided R code generates histograms for the age, price, and quantity distributions. Each histogram is customized with different bin widths and color schemes. Here's what the code does:
+
+1. *Histogram for Age:*
+   - It uses the 'ggplot2' library to create a histogram for the 'age' column of the 'customer_data' dataset.
+   - The 'geom_histogram' function is used to create the histogram, and it specifies a bin width of 5.
+   - The 'fill' parameter sets the fill color of the bars to "lightblue," and the 'color' parameter sets the border color of the bars to "black."
+   - The 'labs' function is used to set the title, x-axis label, and y-axis label for the plot.
+
+2. *Histogram for Price:*
+   - Similar to the age histogram, this section creates a histogram for the 'price' column with a bin width of 50.
+   - It sets the fill color of the bars to "lightgreen" and the border color to "black."
+   - The title, x-axis label, and y-axis label are customized using the 'labs' function.
+
+3. *Histogram for Quantity:*
+   - This part generates a histogram for the 'quantity' column with a bin width of 1.
+   - It uses a fill color of "lightpink" and a border color of "black."
+   - The 'labs' function sets the title, x-axis label, and y-axis label for this histogram.
+
+This code can be placed in an R Markdown document and executed to create the specified histograms, providing visual insights into the age, price, and quantity distributions in the dataset. You can customize the code further as needed to match your data visualization requirements.
