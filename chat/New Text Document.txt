@@ -40,7 +40,6 @@ do you want to make any other change in questions
 
 ===============================================================================
 
-guys i have some suggestions, how about choosing the one standard target variable instead of many,. so that this can give the multiple attribute impact on target variable.
- 
-the question may be:
-total purchase amount significantly differ between male and female customers this can give any gender insights and hoe abot the age?
+
+
+
