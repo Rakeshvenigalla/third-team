@@ -91,3 +91,21 @@ This code creates a bar plot that visualizes the distribution of values in the "
 ===================================================================================
 
 How about we can convert the string columns into the numeric data it might be very helpful for the further analysis.
+
+
+==========================================================================================
+May br the one hot encoding:
+
+For nominal values integer encoding may not be enough and even it is 
+misleading the model.
+Here one hot encoding helps, it is technique where each of the nominal 
+variables will be represented with binary values.
+
+ and also i have heard that: Dummy variable encoding
+
+The one hot encoding creates one binary variable for each category. 
+ The problem is that this representation includes redundancy. 
+ For example, if we know that [1, 0, 0] represents for first value and [0, 1, 
+0] represents for second value then we don't need another binary 
+variable to represent third value, instead we could use 0 values alone 
+like [0, 0].
