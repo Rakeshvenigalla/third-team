@@ -109,3 +109,23 @@ The one hot encoding creates one binary variable for each category.
 0] represents for second value then we don't need another binary 
 variable to represent third value, instead we could use 0 values alone 
 like [0, 0].
+
+
+library(caret)
+
+#define one-hot encoding function
+dummy <- dummyVars(" ~ .", data=df)
+
+#perform one-hot encoding on data frame
+final_df <- data.frame(predict(dummy, newdata=df))
+
+#view final data frame
+final_df
+
+  teamA teamB teamC points
+1     1     0     0     25
+2     1     0     0     12
+3     0     1     0     15
+4     0     1     0     14
+
+this is the sample code and i will send the full code again:
