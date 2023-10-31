@@ -179,3 +179,7 @@ ggplot(age_gen_df, aes(x = Age_Range, y = Count, fill = Gender)) +
 this is the r chuck that i am getting the error and i am trying to draw some conclusions over gender age and the shopping distribution.
 
 ones please check it and try to resolve it.
++++++++++++++++++++++++++++
+we can try by changing names
+i to got the same error
+i will update code as soom as possible and let u know adout it
