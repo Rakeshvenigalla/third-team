@@ -52,4 +52,8 @@ Hello, this is my suggestion:
 
 Are certain product categories associated with higher total purchase amounts than others?
 ===================================
+we can try by changing names
+i to got the same error
+i will update code as soom as possible
+++++++++++++++++++++++++++++++ 
 
