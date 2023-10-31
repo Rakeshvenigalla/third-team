@@ -129,3 +129,13 @@ final_df
 4     0     1     0     14
 
 this is the sample code and i will send the full code again:
+
+
+======================
+here is the thing i have uploaded it is named as code2_phani and contains
+
+two-panel plot
+ Panel 1: Histogram of price with KDE
+Panel 2: Histogram of price with KDE, colored by gender
+
+============================
