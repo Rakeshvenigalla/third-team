@@ -139,3 +139,43 @@ two-panel plot
 Panel 2: Histogram of price with KDE, colored by gender
 
 ============================
+
+# Create age groups based on specified ranges
+customer_data$age_group <- cut(customer_data$age, breaks = c(0, 30, 60, Inf), labels = c("1-30", "31-60", ">61"))
+
+# Count the number of customers in each age group
+age_counts <- table(customer_data$age_group)
+
+# Convert the counts to a data frame
+age_counts_df <- data.frame(Age_Range = names(age_counts), Count = as.numeric(age_counts))
+
+
+# Apply the age categorization function and create a new column 'age_dist'
+customer_data$age_dist <- sapply(customer_data$age, categorize_age)
+
+# Calculate the count of customers by age group and gender
+age_gen <- table(customer_data$age_dist, customer_data$gender)
+
+# Convert the counts to a data frame and set column names
+age_gen_df <- as.data.frame(age_gen)
+colnames(age_gen_df) <- c("Age_Range", "Gender", "Count")
+
+# Create a bar plot
+library(ggplot2)
+ggplot(age_gen_df, aes(x = Age_Range, y = Count, fill = Gender)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Age Range, Gender, and Shopping Distribution",
+    x = "Age Range",
+    y = "Shopping Count"
+  ) +
+  scale_fill_manual(values = c("darkblue", "pink")) +
+  theme_minimal()
+
+```
+
+========================================================================================
+
+this is the r chuck that i am getting the error and i am trying to draw some conclusions over gender age and the shopping distribution.
+
+ones please check it and try to resolve it.
