@@ -183,3 +183,10 @@ ones please check it and try to resolve it.
 we can try by changing names
 i to got the same error
 i will update code as soom as possible and let u know adout it
+
+=========================================================================================
+
+yes rakesh i had changed some of the variables may be but i is foxed oi think 
+
+
+ and also i said thata i had done the frsture engneering for our conveneince anlso alo for the phase we can also do the corelation test and we can proceed with the smart questions and the stastical testing.
