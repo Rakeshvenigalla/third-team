@@ -1,0 +1,98 @@
+---
+title: "Customer Shopping Dataset – Retail Sales Data"
+author: "team3"
+date: "2023-10-31"
+output:
+  html_document:
+    code_folding: hide
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = F, results = "markup", message = F)
+options(scientific=T, digits = 3) 
+```
+
+---
+title: Istanbul Shopping Dataset Analysis
+author: Your Name
+output: 
+  html_document:
+    toc: true
+---
+
+# Introduction
+
+This project is based on the Customer Shopping Dataset - Retail Sales Data provided by Kaggle. We will do data visualization studies with Rstudio using this data set.
+
+## Topic Choice
+
+We selected this dataset because to our strong interest in retail client sales in the shopping sector. Istanbul was our choice since the Kaggle dataset includes exact content without any null values and very few insights when compared to other locations.
+
+## Prior Research
+
+While there have been other analyses of this dataset conducted online, one in particular appears to be rather impressive. It was conducted with PowerBI, and the author established a connection between several variables and parameters, including age, gender, invoice date, and mode of payment.  
+
+
+# Dataset Information
+
+## Description
+
+The Istanbul Shopping Dataset is a comprehensive collection of shopping data obtained from ten different malls in Istanbul between 2021 and 2023. Invoice numbers, client IDs, age, gender, payment methods, product categories, quantity, price, order dates, and shopping mall locations are all included. This dataset is a fantastic resource for researchers, data analysts, and machine learning enthusiasts interested in uncovering trends and patterns in Istanbul’s buying behavior. This dataset, which includes 99458 records, and 10 fields provides a base for companies wishing to use data-driven insights for better decision-making and customer-centric initiatives.
+
+The dataset contains 10 columns:
+
+customer_id: The client's ID. Quantal. 'C' combined with a six-digit number that is specifically allocated to every operation.
+gender: The customer's gender as a string variable.
+age: Aggressive The age of the consumer is an integer variable.
+category: The purchased product's category as represented by a string variable.
+quantity: The number of units of every item (product) sold in a transaction. Price in numbers: Cost per unit. Counting. The unit price of the product in Turkish Liras (TL).
+payment_method: String variable indicating the mode of payment (debit, credit, or cash) applied to the transaction.
+invoice_date: Date of invoice. the day a transaction came into being.
+Shopping_mall: A string variable containing the name of the mall where the purchase was completed.
+
+## Limitations
+
+Since most correlations are conducted online, we have created a new variable called "totalcost," which is the result of multiplying quantity by price and is useful in many correlations. The dataset does not contain any null values, but it does contain string values related to gender, payment methods, and categories, which we have assigned numeric values.
+
+
+# SMART Questions
+
+## Question 1: Does the total purchase amount significantly differ between male and female customers?
+
+We asked ourselves this question as we were considering how different women were from men with respective to purchases.
+With regard to our goal variable, total price against gender, we have conducted the hypothesis testing.
+Null Hypothesis (H0): The total purchase amount does not significantly differ between 
+male and female customers.
+Alternative Hypothesis (H1): The total purchase amount significantly differs between male and female customers
+since we got pvalue of 0.7472 which was greater than the ordinal pvalue of 0.05 so we have rejected the alternate hypothesis and for this We used “ggplot” to compare the relation between Males and Total cost spend on shopping.
+On x-axis we have Gender as Male and on y-axis we have Total cost where 1unit is 10000$.
+
+
+## Question 2: Is there a correlation between a customer's age and the total amount spent? Do younger or older customers spend more?
+
+We wondered if there was a relationship between age and purchasing behavior—that is, if older or younger persons made more purchases.
+We have carried out the hypothesis testing with respect to our target variable, total price against age.
+Null Hypothesis (H0): There is no correlation between a customer's age and the total amount spent.
+Alternative Hypothesis (H1): There is a correlation between a customer's age and the total amount spent.
+
+## Question 3: Is there a positive correlation between the quantity of products purchased and the total cost of the shopping? Does the choice of payment method affect the total purchase amount? Are credit card users more likely to spend more?
+
+We were thinking about how age related to the price of the things we bought when we came up with this question.
+We have tested our hypothesis concerning our goal variable, total price compared to products.
+Null Hypothesis (H0): There is no significant difference in total purchase amounts 
+across different product categories.
+Alternative Hypothesis (H1): There is a significant difference in total purchase 
+amounts across different product categories.
+We have rejected the alternative hypothesis since our pvalue of 0.9 was higher than the ordinal pvalue of 0.05.
+We have a Histogram that shows the relationship between the categories and the overall cost of the things purchased.
+We have categories on the x-axis and Mean Total Cost on the y-axis, with 1 unit equaling 3000$.
+
+Customers spent more money on technology than on any other item, with roughly $12,000 spent on it alone.
+The next step in technology is footwear and apparel, which cost roughly $6500 and $3200, respectively.
+Food and beverages, as well as souvenirs, are among the least expensive goods. 
