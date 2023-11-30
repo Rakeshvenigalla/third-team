@@ -1,26 +1,26 @@
-i want to make this updates in our project
+I want to make these updates in our project
 +++++++++++++++
 Introduction:
-In the modeling phase, we leverage our comprehensive EDA of the Istanbul customer dataset to analyze the total purchase values from 2021 to present. Statistical models will help uncover patterns, draw conclusions, and forecast future trends in the retail dataset.
+In the modelling phase, we leverage our comprehensive EDA of the Istanbul customer dataset to analyze the total purchase values from 2021 to the present. Statistical models will help uncover patterns, draw conclusions, and forecast future trends in the retail dataset.
   and want to add a smart question
 +++++++++++++++++++++++++++
-Is there a correlation between a customer's age and gender effect on shopping behavior?
+Is there a correlation between a customer's age and gender and shopping behaviour?
 ++++++++++++++++++++++++++++++++++++
 
 
-yes rakesh i am agreeing totally with you i will suggest some models
+yes Rakesh I agree with you I will suggest some models
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
-Goalof the model:
-The project aims to build robust Regression models for SMART questions based on exploratory data analysis. These models will explain historical economic behaviors and predict future trends in retail payments, providing actionable insights for economic strategists in shopping malls.
+The goal of the model is:
+The project aims to build robust regression models for SMART questions based on exploratory data analysis. These models will explain historical economic behaviours and predict future trends in retail payments, providing actionable insights for economic strategists in shopping malls.
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-but i am currently thinking of the random forest and desicion analysis 
+but I am currently thinking of the random forest and decision analysis 
 +++++++++++++++++++++++++++++++++++++++++++++++++++
 
-how about your suggestions guys:
+How about your suggestions, guys?
 ++++++++++++++++++++++++++++++++++++++++++++++++
 
-we can do the regression for all the models it would be nice and also we can draw some of the conclusions tooo
+we can do the regression for all the models; it would be nice and we can also draw some of conclusions.
 ++++++++++++++++++++++++++++++++++++++++
 
 3.	Does the shopping mall location affect the purchase frequency?
