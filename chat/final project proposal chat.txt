@@ -1,0 +1,8 @@
+i want to make this updates in our project
++++++++++++++++
+Introduction:
+In the modeling phase, we leverage our comprehensive EDA of the Istanbul customer dataset to analyze the total purchase values from 2021 to present. Statistical models will help uncover patterns, draw conclusions, and forecast future trends in the retail dataset.
+  and want to add a smart question
++++++++++++++++++++++++++++
+Is there a correlation between a customer's age and gender effect on shopping behavior?
+++++++++++++++++++++++++++++++++++++
