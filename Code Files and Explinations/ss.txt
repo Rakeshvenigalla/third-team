@@ -1,0 +1,130 @@
+#%%[markdown]
+# You may use web search, notes, etc. 
+# Do not use help from another human. If you use help from another student, 
+# then I have no choice but to consider that student not a human, and will be 
+# booted off my class immediately. You will also arrive at the same fate.
+# 
+#%%
+import pandas as pd
+import rfit 
+import statsmodels.api as sm
+df = rfit.dfapi('Diet6wk','Person')
+df.columns.values[3] = 'origweight'
+df.info()
+
+# The dataframe is on a person's weight 6 weeks after starting a diet. 
+# Build these models:
+# 
+# 1. Using statsmodels library, build a linear model for the wight6weeks as a function of the other variables. Use gender and Diet as categorical variables. Print out the model summary. What is the r-squared value of the model?  
+# 
+
+
+# Convert categorical variables (Gender and Diet) to dummy/indicator variables
+df_with_dummies = pd.get_dummies(df, columns=['gender', 'Diet'], drop_first=True)
+
+# Define independent variables (X) and dependent variable (y)
+X = df_with_dummies.drop('weight6weeks', axis=1)
+y = df_with_dummies['weight6weeks']
+
+# Add a constant term for the intercept
+X = sm.add_constant(X)
+
+# Fit the linear model
+model = sm.OLS(y, X).fit()
+
+# Print model summary
+print(model.summary())
+
+# Get the R-squared value
+r_squared = model.rsquared
+print(f"R-squared value of the linear model: {r_squared}")
+
+
+
+#%%
+# 2. Again using the statsmodels library, build a multinomial-logit regression model for the Diet (3 levels) as a function of the other variables. Use gender as categorical again. Print out the model summary. What is the  model's "psuedo r-squared" value?  
+# 
+# from statsmodels.formula.api import glm
+from statsmodels.formula.api import mnlogit  # use this for multinomial logit in statsmodels library, instead of glm for binomial.
+# Sample use/syntax:
+# model = mnlogit(formula, data)
+from statsmodels.formula.api import mnlogit
+from sklearn.preprocessing import LabelEncoder
+
+# Assuming 'rfit' is a custom library to retrieve data, and 'Diet6wk' and 'Person' are valid arguments
+# df = rfit.dfapi('Diet6wk', 'Person')
+# Modify column name (assuming the dataframe is loaded correctly)
+df.rename(columns={'Column3': 'origweight'}, inplace=True)
+
+# Convert categorical variables to numeric using LabelEncoder
+le = LabelEncoder()
+df['Diet'] = le.fit_transform(df['Diet'])
+df['gender'] = le.fit_transform(df['gender'])
+
+# Fit multinomial-logit model
+model_multi = mnlogit('Diet ~ gender + origweight', df).fit()
+print(model_multi.summary())
+
+# Get the pseudo R-squared value
+pseudo_r_squared = model_multi.prsquared
+print(f"Pseudo R-squared value of multinomial-logit model: {pseudo_r_squared}")
+
+
+#%%
+# 3a. Use SKLearn from here onwards. 
+# Use a 2:1 split, set up the training and test sets for the dataset, with Diet as y, and the rest as Xs. Use the seed value/random state as 1234 for the split.
+#
+from sklearn.model_selection import train_test_split
+
+# Assuming 'df' contains your dataset with appropriate columns
+# Splitting the dataset into features (X) and target variable (y)
+X = df.drop('Diet', axis=1)  # Features
+y = df['Diet']  # Target variable
+
+# Splitting the data into training and test sets with a 2:1 ratio and random state of 1234
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=1234)
+
+
+#%%
+# 
+# 3b. Build the corresponding logit regression as in Q2 here using sklearn. Train and score it. What is the score of your model with the training set and with the test set?
+# 
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# Assuming X_train, X_test, y_train, y_test are already defined from the previous split (as generated in 3a)
+
+# Initialize and train the logistic regression model
+logistic_model = LogisticRegression(max_iter=1000)
+logistic_model.fit(X_train, y_train)
+
+# Score the model on the training set and test set
+train_score = logistic_model.score(X_train, y_train)
+test_score = logistic_model.score(X_test, y_test)
+
+print(f"Logistic Regression Model Scores - Training: {train_score}, Test: {test_score}")
+
+
+
+
+#%%
+# 4. Using the same training dataset, now use a 3-NN model, score the model with the training and test datasets. 
+# 
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# Assuming X_train, X_test, y_train, y_test are already defined from the previous split (as generated in 3a)
+
+# Initialize and train the 3-NN model
+knn_model = KNeighborsClassifier(n_neighbors=3)
+knn_model.fit(X_train, y_train)
+
+# Score the 3-NN model on the training set and test set
+knn_train_score = knn_model.score(X_train, y_train)
+knn_test_score = knn_model.score(X_test, y_test)
+
+print(f"3-NN Model Scores - Training: {knn_train_score}, Test: {knn_test_score}")
+
+
+
+#%%
