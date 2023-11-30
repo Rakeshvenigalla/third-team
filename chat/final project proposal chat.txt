@@ -18,3 +18,7 @@ but i am currently thinking of the random forest and desicion analysis
 +++++++++++++++++++++++++++++++++++++++++++++++++++
 
 how about your suggestions guys:
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+we can do the regression for all the models it would be nice and also we can draw some of the conclusions tooo
+++++++++++++++++++++++++++++++++++++++++
