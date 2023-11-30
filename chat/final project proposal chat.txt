@@ -6,3 +6,15 @@ In the modeling phase, we leverage our comprehensive EDA of the Istanbul custome
 +++++++++++++++++++++++++++
 Is there a correlation between a customer's age and gender effect on shopping behavior?
 ++++++++++++++++++++++++++++++++++++
+
+
+yes rakesh i am agreeing totally with you i will suggest some models
+++++++++++++++++++++++++++++++++++++++++++++++++++++
+Goalof the model:
+The project aims to build robust Regression models for SMART questions based on exploratory data analysis. These models will explain historical economic behaviors and predict future trends in retail payments, providing actionable insights for economic strategists in shopping malls.
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+but i am currently thinking of the random forest and desicion analysis 
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+how about your suggestions guys:
