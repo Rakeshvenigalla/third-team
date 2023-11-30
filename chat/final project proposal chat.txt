@@ -22,3 +22,8 @@ how about your suggestions guys:
 
 we can do the regression for all the models it would be nice and also we can draw some of the conclusions tooo
 ++++++++++++++++++++++++++++++++++++++++
+
+3.	Does the shopping mall location affect the purchase frequency?
+
+Description:
+The Istanbul Shopping Dataset comprises 99458 records from ten malls in Istanbul (2021-2023), featuring invoice numbers, client IDs, demographics, payment methods, and product details. It is a valuable resource for understanding consumer behaviour and decision-making in Istanbul's retail scene.
