@@ -35,3 +35,24 @@ how about your suggestions guys:
 4.	Are certain product categories associated with higher total purchase amounts than others?
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 >>>>>>> Stashed changes
+I want to make these updates in our project
++++++++++++++++
+Introduction:
+In the modelling phase, we leverage our comprehensive EDA of the Istanbul customer dataset to analyze the total purchase values from 2021 to the present. Statistical models will help uncover patterns, draw conclusions, and forecast future trends in the retail dataset.
+  and want to add a smart question
++++++++++++++++++++++++++++
+Is there a correlation between a customer's age and gender and shopping behaviour?
+++++++++++++++++++++++++++++++++++++
+
+
+yes Rakesh I agree with you I will suggest some models
+++++++++++++++++++++++++++++++++++++++++++++++++++++
+The goal of the model is:
+The project aims to build robust regression models for SMART questions based on exploratory data analysis. These models will explain historical economic behaviours and predict future trends in retail payments, providing actionable insights for economic strategists in shopping malls.
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+but I am currently thinking of the random forest and decision analysis 
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<<<<<<< Updated upstream
+How about your suggestions, guys?
