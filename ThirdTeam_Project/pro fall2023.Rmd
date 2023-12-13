@@ -1,0 +1,555 @@
+
+---
+title: "R -MidTerm Project"
+author: "Third Team"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+```{r init, include=FALSE}
+# some of common options (and the defaults) are: 
+# include=T, eval=T, echo=T, results='hide'/'asis'/'markup',..., collapse=F, warning=T, message=T, error=T, cache=T, fig.width=6, fig.height=4, fig.dim=c(6,4) #inches, fig.align='left'/'center','right', 
+# knitr::opts_chunk$set(warning = F, results = "markup", message = F)
+knitr::opts_chunk$set(warning = F, results = "markup", message = F)
+options(scientific=T, digits = 3) 
+# options(scipen=9, digits = 3) 
+# ‘scipen’: integer. A penalty to be applied when deciding to print numeric values in fixed or exponential notation.  Positive values bias towards fixed and negative towards scientific notation: fixed notation will be preferred unless it is more than ‘scipen’ digits wider.
+# use scipen=999 to prevent scientific notation at all times
+```
+# 1 Explarotary Data Analysis
+
+## 1.1 Loading the Data
+
+```{r}
+customer_data=read.csv((file.choose()))
+# Convert date to a proper date format
+customer_data$invoice_date = as.Date(customer_data$invoice_date, format = "%d/%m/%Y")
+head(customer_data)
+```
+After the conversion of correct Date Time formate.
+
+## 1.2  Defining the Target Variable
+```{r}
+
+customer_data$total_cost <- customer_data$quantity * customer_data$price
+
+head(customer_data)
+```
+Target Variable is the Product of two individual Features in the given Columns of the DataSet.
+
+## 1.3  Verifying the Null Values and Data           Claeaning
+
+```{r}
+# Check for missing values
+sum(is.na(customer_data))
+```
+
+```{r, results='markup'}
+# Check data types
+str(customer_data)
+```
+For Checking the Data Types of the choosen DataSet
+
+## 1.4  Ensure proper factors
+
+```{r, results='markup'}
+
+customer_data$gender = factor(customer_data$gender)
+customer_data$category = factor(customer_data$category)
+customer_data$payment_method = factor(customer_data$payment_method)
+customer_data$shopping_mall = factor(customer_data$shopping_mall)
+
+
+```
+It is used to store categorical variables along with that which takes the categorical variable and stores data in levels as we defined
+
+## 1.5  Check the dataset For Analysis
+
+```{r, results='markup'}
+
+head(customer_data)
+#summary(customer_data)
+```
+
+## 1.6  Subsetting the dataset based on              different conditions
+
+```{r, results='markup'}
+
+
+# Subsetting the dataset for female customers
+female_customers = subset(customer_data, gender == "Female")
+head(female_customers)
+# Subsetting the dataset for customers older than 30
+older_customers = subset(customer_data, age > 30)
+head(older_customers)
+# Subsetting the dataset for Clothing category
+clothing_data = subset(customer_data, category == "Clothing")
+head(clothing_data)
+# Subsetting the dataset for customers who shopped at Kanyon mall
+kanyon_shoppers = subset(customer_data, shopping_mall == "Kanyon")
+head(kanyon_shoppers)
+# Subsetting the dataset for customers who used Credit Card as the payment method
+credit_card_customers = subset(customer_data, payment_method == "Credit Card")
+head(credit_card_customers)
+```
+The code creates subsets depending on a variety of parameters, including gender, age, product category, shopping mall, and payment method, in an effort to explore and comprehend diverse regions of the dataset. It creates unique subsets of data for additional analysis by using the'subset' function to filter the dataset rows that satisfy each requirement. The initial few rows of each subset are then shown using the 'head' function, giving a sneak peek at the data that meets each specific requirement. This code enables for a more specific and concentrated investigation of the various dataset parts and forms the basis for data exploration.
+# 2  Data Visuvalization
+
+## 2.1 Plotting the Distribution Graphs
+```{r}
+# Histogram for Age
+library(ggplot2)
+ggplot(customer_data, aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "lightblue", color = "black") +
+  labs(
+    title = "Age Distribution",
+    x = "Age",
+    y = "Frequency"
+  )
+
+# Histogram for Price
+ggplot(customer_data, aes(x = price)) +
+  geom_histogram(binwidth = 50, fill = "lightgreen", color = "black") +
+  labs(
+    title = "Price Distribution",
+    x = "Price",
+    y = "Frequency"
+  )
+
+# Histogram for Quantity
+ggplot(customer_data, aes(x = quantity)) +
+  geom_histogram(binwidth = 1, fill = "lightpink", color = "black") +
+  labs(
+    title = "Quantity Distribution",
+    x = "Quantity",
+    y = "Frequency"
+  )
+
+```
+## 2.2 Plotting the Feature vs.Feature Graph        comparision
+
+```{r}
+# Load the ggplot2 library if not already loaded
+library(ggplot2)
+
+# Create a list of categorical features to visualize
+categorical_features <- c("gender", "category", "payment_method")
+
+# Create a plot for each categorical feature
+for (feature in categorical_features) {
+  # Create a count plot for the current feature
+  plot <- ggplot(customer_data, aes_string(x = feature, fill = feature)) +
+    geom_bar() +
+    labs(
+      title = paste("Count Plot of", feature),
+      x = feature,
+      y = "Count"
+    ) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+  # Display the plot
+  print(plot)
+}
+
+```
+
+## 2.3 Bar plot for the catogiry and the            count of values
+
+```{r}
+library(ggplot2)
+
+# Count the occurrences of each category
+category_counts <- table(customer_data$category)
+
+# Create a data frame from the counts
+category_df <- data.frame(Category = names(category_counts), Count = as.numeric(category_counts))
+
+# Create the barplot
+ggplot(category_df, aes(x = Category, y = Count, fill = Category)) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "Count of Values by Category",
+    x = "Category",
+    y = "Count"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for better readability
+
+```
+
+
+# 3 Feature Engineering
+
+## 3.1 Rechange the columns Feature                 engineering -- One hot Encoding
+
+```{r}
+# Perform one-hot encoding for payment method
+payment_methods <- unique(customer_data$payment_method)
+for (method in payment_methods) {
+  customer_data[paste0("payment_", method)] <- as.integer(customer_data$payment_method == method)
+}
+head(customer_data)
+```
+```{r}
+genders <- unique(customer_data$gender)
+for (method in genders) {
+  customer_data[paste0("gender_", method)] <- as.integer(customer_data$gender == method)
+}
+head(customer_data)
+```
+
+
+
+
+
+```{r, results='markup'}
+# Load the necessary libraries (ggplot2)
+library(ggplot2)
+
+# Create a box plot for age distribution by gender
+ggplot(customer_data, aes(x = gender, y = age, fill = gender)) +
+  geom_boxplot() +
+  labs(
+    title = "Age Distribution by Gender",
+    x = "Gender",
+    y = "Age"
+  ) +
+  theme_minimal()
+
+```
+```{r, results='markup'}
+# Summary
+summary_gender_age = summary(customer_data$gender)
+summary_age = summary(customer_data$age)
+
+
+```
+
+```{r}
+colnames(customer_data)
+```
+# 4 Corelation Matrix After Feature              Engineering
+
+## 4.1 Calculating the correlation matrix for        numerical variables
+
+```{r}
+# Load the corrplot library
+library(corrplot)
+
+correlation_matrix <- cor(customer_data[ c("age", "quantity", "price", "total_cost","gender_Male","gender_Female","payment_Debit Card","payment_Cash","payment_Credit Card")])
+
+# Create a correlation plot
+corrplot(correlation_matrix, method = "color", type = "upper", tl.col = "black", tl.srt = 45)
+
+```
+
+# 5 SMART Questions Analysis and stastical       testing
+
+## 5.1 EDA using ggplot2: Box plot to compare        total cost by gender
+
+```{r, results='markup'}
+library(ggplot2)
+ggplot(data = customer_data, aes(x = gender_Male, y = total_cost, fill = gender_Male)) +
+  geom_boxplot() +
+  labs(title = "Total Cost by Gender", x = "Gender_Male", y = "Total Cost")
+```
+
+## 5.2 stastical testing for Gender and Total        price
+
+```{r, results='markup'}
+t_test_gender <- t.test(total_cost ~ gender, data = customer_data)
+# Check the p-value
+if (t_test_gender$p.value < 0.05) {
+  cat("Reject the null hypothesis. Gender has a significant effect on total purchase amount.\n")
+} else {
+  cat("Fail to reject the null hypothesis. Gender does not significantly affect total purchase amount.\n")
+}
+
+t_test_gender
+```
+
+## 5.3 EDA using ggplot2: Scatter plot to            examine the relationship between age         and total cost
+
+```{r}
+
+ggplot(data = customer_data, aes(x = age, y = total_cost)) +
+  geom_point() +
+  labs(title = "Scatter Plot: Age vs. Total Cost", x = "Age", y = "Total Cost")
+
+```
+```{r}
+correlation_age_cost <- cor(customer_data$age, customer_data$total_cost)
+# Check the correlation coefficient
+if (abs(correlation_age_cost) > 0.5) {
+  cat("Accept the alternative hypothesis. There is a strong correlation between age and total purchase amount.\n")
+} else {
+  cat("Fail to accept the alternative hypothesis. There is no strong correlation between age and total purchase amount.\n")
+}
+
+```
+## 5.4 EDA using ggplot2: Bar plot to compare        total cost by Product category
+
+```{r}
+
+ggplot(data = customer_data, aes(x = category, y = total_cost, fill = category)) +
+  geom_bar(stat = "summary", fun = "mean") +
+  labs(title = "Total Cost by Category", x = "Category", y = "Mean Total Cost")
+
+```
+```{r}
+# Perform ANOVA test
+anova_category <- aov(total_cost ~ category, data = customer_data)
+#anova_category
+# Check the p-value
+p_value <- summary(anova_category)[[1]][[5]][1]
+cat("pvalue is",p_value)
+# Compare the p-value to the significance level (0.05)
+if (p_value < 0.05) {
+  
+  
+  cat("Reject the null hypothesis. Product categories have a significant effect on total purchase amount.\n")
+} else {
+  cat("Fail to reject the null hypothesis. Product categories do not significantly affect total purchase amount.\n")
+}
+
+```
+
+## 5.5 EDA using ggplot2: Box plot to compare        total cost by payment method
+
+```{r}
+
+ggplot(data = customer_data, aes(x = payment_method, y = total_cost, fill = payment_method)) +
+  geom_boxplot() +
+  labs(title = "Total Cost by Payment Method", x = "Payment Method", y = "Total Cost")
+
+```
+
+```{r}
+# Perform ANOVA test
+anova_payment <- aov(total_cost ~ payment_method, data = customer_data)
+
+# Check the summary of the ANOVA
+summary_anova_payment <- summary(anova_payment)
+
+# Print the summary
+print(summary_anova_payment)
+
+# Check the p-value
+p_value_payment <- summary_anova_payment$"Pr(>F)"[1]
+
+# Compare the p-value to the significance level (0.05)
+if (!is.null(p_value_payment) && p_value_payment < 0.05) {
+  cat("Reject the null hypothesis. Payment method has a significant effect on total purchase amount.\n")
+} else  {
+  cat("Fail to reject the null hypothesis. Payment method does not significantly affect total purchase amount.\n")
+} 
+
+```
+# 6 Fearture Engineering for age_group
+```{r}
+library("dplyr")
+library("magrittr")
+customer_data <- customer_data %>% mutate(invoice_date = as.Date(invoice_date,'%d/%m/%Y'))
+customer_data <- customer_data %>% mutate(total_cost = price*quantity)
+customer_data <- customer_data %>% mutate(age_group = ifelse(age < 20, "10's",
+                              ifelse(age < 30, "20's",
+                              ifelse(age < 40, "30's",
+                              ifelse(age < 50, "40's",
+                              ifelse(age < 60, "50's", "60's")))))) %>% 
+  dplyr::select(shopping_mall, invoice_date, invoice_no, customer_id, gender, age, age_group, category, quantity, price, total_cost,
+         payment_method)
+head(customer_data)
+```
+
+
+# 7 Model Building
+
+
+## 7.1.1 Is there any corelation between customer's age gender effect on shopping behaviour. 
+
+```{r}
+ggplot(customer_data, aes(x = price)) +
+  geom_histogram(binwidth = 500, fill = "skyblue", color = "black") +
+  ggtitle("Distribution of Price") +
+  xlab("Price") +
+  ylab("Frequency")
+
+```
+
+## 7.1.2 Linear Model for the dependent variable Total_cost and independent variables
+
+```{r}
+model1 <- lm(total_cost ~ age + gender, data = customer_data)
+summary(model1)
+ggplot(data = customer_data, aes(x = age, y = total_cost, color = gender)) +
+  geom_smooth(method = "lm", se = FALSE) +  # Add a linear regression line
+  labs(x = "Age", y = "Quantity", title = "Regression of Quantity on Age by Gender") + guides(color = guide_legend(title = "Gender"))
+```
+
+## 7.1.3 General analysis on gender vs age
+
+```{r}
+frequency_table1 <- customer_data %>%
+  count(gender) %>%
+  mutate(percentage = n / sum(n) * 100)
+
+ggplot(frequency_table1, aes(x = "", y = percentage, fill = gender)) +
+  geom_bar(stat = "identity", width = 1, color = "white") +
+  coord_polar("y", start = 0) +
+  geom_text(aes(label = paste0(round(percentage, 1), "%")), position = position_stack(vjust = 0.5), color = "white") +
+  ggtitle("Pie Chart for Gender") + labs(fill= "Gender") +
+  theme_void()
+
+frequency_table2 <- customer_data %>%
+  count(age_group) %>%
+  mutate(percentage = n / sum(n) * 100) 
+
+ggplot(frequency_table2, aes(x = "", y = percentage, fill = age_group)) +
+  geom_bar(stat = "identity", width = 1, color = "white") +
+  coord_polar("y", start = 0) +
+  geom_text(aes(label = paste0(round(percentage, 1), "%")), position = position_stack(vjust = 0.5), color = "white") +
+  ggtitle("Pie Chart for Age Group") + labs(fill= "Age Group") +
+  theme_void()
+```
+
+## 7.1.4 Linera model for the Age and Gender Impact Shopping Behavior with the Quantity
+
+```{r}
+model2 <- lm(quantity ~ age + gender, data = customer_data)
+summary(model2)
+ggplot(data = customer_data, aes(x = age, y = quantity, color = gender)) +
+  geom_smooth(method = "lm", se = FALSE) +  # Add a linear regression line
+  labs(x = "Age", y = "Quantity", title = "Regression of Quantity on Age by Gender") + guides(color = guide_legend(title = "Gender"))
+```
+
+## 7.2 Does the total purchase amount effect the total payment method?
+
+### 7.2.1 consumption by payment method and by age group
+```{r}
+payment_vector <- customer_data%>% group_by(payment_method, age_group) %>% summarise(customer = n(),sales_USD = sum(total_cost*0.052/1000), .groups = "drop") %>% arrange(sales_USD %>% desc())
+payment_vector %>% 
+  ggplot(aes(reorder(age_group, sales_USD), sales_USD)) +
+  geom_col(position = 'dodge', fill = 'orange', col = 'black', alpha = .7) +
+  coord_flip() + 
+  facet_wrap(~ payment_method) +
+  labs(title = 'Consumption by payment method by age group ',
+       subtitle = '1 = 1,000$') +
+  ylab('Total Cost') +
+  xlab('Payment Method by Age') +
+  theme_bw() +
+  theme(plot.title = element_text(face = 'bold', size = 10, hjust = .5),
+        axis.title.y = element_text(face = 'italic'),
+        axis.title.x = element_text(face = 'italic'),
+        axis.text.x = element_text(face = 'bold'),
+        axis.text.y = element_text(face = 'bold'),
+        strip.text.x = element_text(face = 'bold' , color = 'white', size = 7),
+        strip.background.x = element_rect(fill = 'darkred'))
+```
+### 7.2.2 Linear model for price vs the paymentr method
+
+```{r}
+model3 <- lm(price ~ payment_method, data = customer_data)
+summary(model3)
+ggplot(data = customer_data, aes(x = payment_method, y = price)) +
+  geom_boxplot() +
+  labs(x = "Payment Method", y = "Price", title = "Boxplot of Price by Payment Method")
+```
+
+## 7.3 Does the shopping mall location effect the purchase frequency?
+
+### 7.3.1 Quantity and shopping mall Analysis
+
+```{r}
+frequency_table4 <- customer_data %>%
+  count(shopping_mall) %>%
+  mutate(percentage = n / sum(n) * 100)
+
+ggplot(frequency_table4, aes(x = "", y = percentage, fill = shopping_mall)) +
+  geom_bar(stat = "identity", width = 1, color = "white") +
+  coord_polar("y", start = 0) +
+  geom_text(aes(label = paste0(round(percentage, 1), "%")), position = position_stack(vjust = 0.5), color = "white") +
+  ggtitle("Pie Chart for Shopping Mall") + labs(fill= "Shopping Mall") +  theme_void()
+
+mall_vector <- customer_data %>% group_by(shopping_mall) %>% summarise(customer = n(), sales_USD = sum(total_cost*0.052/1000), .groups = "drop") %>% arrange(sales_USD %>% desc())
+mall_vector %>% 
+  ggplot() + 
+  geom_col(aes(reorder(shopping_mall, sales_USD), sales_USD), 
+           fill = 'darkgreen', col = 'black', alpha = .6,width = .7) +
+  coord_flip() + 
+  labs(title = 'Shopping Mall Ranking', subtitle = '1 = 1,000$') + ylab('Total cost as Sales in USD') +
+  xlab('') +
+  theme(plot.title = element_text(size = 10, face = 'bold', hjust = .5),
+        axis.title.y = element_text(face = 'bold'),
+        axis.text.y = element_text(face = 'bold', size = 7),
+        axis.title.x = element_text(face = 'italic', size = 7),
+        axis.text.x = element_text(face = 'bold'))
+```
+
+### 7.3.2 Linear model for quantity and shopping mall
+
+```{r}
+model4 <- lm(quantity ~ shopping_mall, data = customer_data)
+summary(model4)
+ggplot() +
+  geom_col(data = customer_data, aes(x = shopping_mall, y = quantity), fill = 'darkgreen') +
+  labs(x = "Shopping Mall", y = "Quantity", title = "Bar chart of Quantity by Shopping Malls") +
+  theme(axis.text = element_text(face = 'bold', size = 7, angle = 20))
+```
+
+## 7.4 Relation between the certain category and the total purchase amount?
+
+### 7.4.1 Histogram for Age and Categories 
+
+```{r}
+customer_data %>% ggplot(data = customer_data, mapping = aes(x = age_group)) +
+  geom_histogram(binwidth = 5, fill = 'darkblue', col = 'black', stat = "count") + facet_wrap(~ category) + 
+  xlab("Age Group") +
+  ylab("Frequency") +
+  ggtitle("Histogram for Age Group by Category") +
+  theme(plot.title = element_text(face = 'bold', size = 10, hjust = .5),
+        axis.title = element_text(face = 'italic'),
+        axis.text = element_text(face = 'bold', size = 7, angle = 0))
+```
+
+### 7.4.2 Histogram for Gender and Categories 
+
+```{r}
+customer_data %>% ggplot(data = customer_data, mapping = aes(x = category)) +
+  geom_histogram(binwidth = 5, fill = 'brown', col = 'black', stat = "count") + facet_wrap(~ gender) + 
+  xlab("Category") +
+  ylab("Frequency") +
+  ggtitle("Histogram for Category by Gender") +
+  theme(plot.title = element_text(face = 'bold', size = 10, hjust = .5),
+        axis.title = element_text(face = 'italic'),
+        axis.text = element_text(face = 'bold', size = 7, angle = 20))
+
+```
+
+### 7.4.3 Model for Category and total price
+
+```{r}
+model5 <- lm(price ~ category, data = customer_data)
+summary(model5)
+ggplot(customer_data, aes(x = category, y = price)) +
+  geom_boxplot() +
+  labs(x = "Product Category", y = "Price") +
+  ggtitle("Boxplot of Price by Product Category")
+```
+
+## 8 Conclusion
+
+```{r}
+#After a comprehensive analysis, it seems that Age and Gender don't greatly affect how much individuals spend on items, and product category significantly affects purchase amount, there's no apparent correlation between these criteria and the amount paid. 
+```
+
+
+
+
