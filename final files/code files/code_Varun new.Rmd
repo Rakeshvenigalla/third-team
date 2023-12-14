@@ -1,0 +1,220 @@
+```{r}
+customer_data=read.csv((file.choose()))
+# Convert date to a proper date format
+customer_data$invoice_date = as.Date(customer_data$invoice_date, format = "%d/%m/%Y")
+```
+
+##Defining the Target Variable
+
+```{r}
+
+customer_data$total_cost <- customer_data$quantity * customer_data$price
+
+head(customer_data)
+```
+
+## Verifying the Null Values and Data Claeaning
+
+```{r}
+# Check for missing values
+sum(is.na(customer_data))
+```
+
+```{r, results='markup'}
+# Check data types
+str(customer_data)
+```
+
+## Ensure proper factors
+
+```{r, results='markup'}
+
+customer_data$gender = factor(customer_data$gender)
+customer_data$category = factor(customer_data$category)
+customer_data$payment_method = factor(customer_data$payment_method)
+customer_data$shopping_mall = factor(customer_data$shopping_mall)
+
+
+```
+
+## Check the dataset For Analysis
+
+```{r, results='markup'}
+
+head(customer_data)
+#summary(customer_data)
+```
+
+## Subsetting the dataset based on different conditions
+
+```{r, results='markup'}
+
+
+# Subsetting the dataset for female customers
+female_customers = subset(customer_data, gender == "Female")
+head(female_customers)
+# Subsetting the dataset for customers older than 30
+older_customers = subset(customer_data, age > 30)
+head(older_customers)
+# Subsetting the dataset for Clothing category
+clothing_data = subset(customer_data, category == "Clothing")
+head(clothing_data)
+# Subsetting the dataset for customers who shopped at Kanyon mall
+kanyon_shoppers = subset(customer_data, shopping_mall == "Kanyon")
+head(kanyon_shoppers)
+# Subsetting the dataset for customers who used Credit Card as the payment method
+credit_card_customers = subset(customer_data, payment_method == "Credit Card")
+head(credit_card_customers)
+```
+```{r}
+# Histogram for Age
+library(ggplot2)
+ggplot(customer_data, aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "lightblue", color = "black") +
+  labs(
+    title = "Age Distribution",
+    x = "Age",
+    y = "Frequency"
+  )
+
+# Histogram for Price
+ggplot(customer_data, aes(x = price)) +
+  geom_histogram(binwidth = 50, fill = "lightgreen", color = "black") +
+  labs(
+    title = "Price Distribution",
+    x = "Price",
+    y = "Frequency"
+  )
+
+# Histogram for Quantity
+ggplot(customer_data, aes(x = quantity)) +
+  geom_histogram(binwidth = 1, fill = "lightpink", color = "black") +
+  labs(
+    title = "Quantity Distribution",
+    x = "Quantity",
+    y = "Frequency"
+  )
+
+```
+
+```{r}
+# Load the ggplot2 library if not already loaded
+library(ggplot2)
+
+# Create a list of categorical features to visualize
+categorical_features <- c("gender", "category", "payment_method")
+
+# Create a plot for each categorical feature
+for (feature in categorical_features) {
+  # Create a count plot for the current feature
+  plot <- ggplot(customer_data, aes_string(x = feature, fill = feature)) +
+    geom_bar() +
+    labs(
+      title = paste("Count Plot of", feature),
+      x = feature,
+      y = "Count"
+    ) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+  # Display the plot
+  print(plot)
+}
+```
+
+```{r}
+library(ggplot2)
+
+# Count the occurrences of each category
+category_counts <- table(customer_data$category)
+
+# Create a data frame from the counts
+category_df <- data.frame(Category = names(category_counts), Count = as.numeric(category_counts))
+
+# Create the barplot
+ggplot(category_df, aes(x = Category, y = Count, fill = Category)) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "Count of Values by Category",
+    x = "Category",
+    y = "Count"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for better readability
+
+```
+
+```{r}
+library(ggplot2)
+
+# Create a two-panel plot
+# Panel 1: Histogram of price with KDE
+# Panel 2: Histogram of price with KDE, colored by gender
+ggplot(customer_data, aes(x = price)) +
+  # Panel 1
+  geom_histogram(bins = 30, fill = "lightblue", color = "black") +
+  geom_density(color = "blue") +
+  labs(title = "Distribution of Price", x = "Price") +
+  # Panel 2
+  facet_wrap(~ gender, ncol = 2) +
+  geom_histogram(bins = 30, fill = "lightblue", color = "black", alpha = 0.5) +
+  geom_density(color = "blue") +
+  labs(title = "Distribution of Price by Gender", x = "Price") +
+  theme_minimal()
+
+```
+
+```{r}
+library(ggplot2)
+
+# Create a barplot for shopping malls
+ggplot(customer_data, aes(x = shopping_mall)) +
+  geom_bar() +
+  labs(
+    title = "Count of Customers by Shopping Mall",
+    x = "Shopping Mall",
+    y = "Count"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))  # Rotate x-axis labels for better readability
+
+```
+
+```{r}
+# Perform one-hot encoding for payment method
+payment_methods <- unique(customer_data$payment_method)
+for (method in payment_methods) {
+  customer_data[paste0("payment_", method)] <- as.integer(customer_data$payment_method == method)
+}
+head(customer_data)
+```
+```{r}
+genders <- unique(customer_data$gender)
+for (method in genders) {
+  customer_data[paste0("gender_", method)] <- as.integer(customer_data$gender == method)
+}
+head(customer_data)
+```
+
+
+```{r, results='markup'}
+# Load the necessary libraries (ggplot2)
+library(ggplot2)
+
+# Create a box plot for age distribution by gender
+ggplot(customer_data, aes(x = gender, y = age, fill = gender)) +
+  geom_boxplot() +
+  labs(
+    title = "Age Distribution by Gender",
+    x = "Gender",
+    y = "Age"
+  ) +
+  theme_minimal()
+
+```
+```{r, results='markup'}
+# Summary
+summary_gender_age = summary(customer_data$gender)
+summary_age = summary(customer_data$age)
+
+
+```
+
